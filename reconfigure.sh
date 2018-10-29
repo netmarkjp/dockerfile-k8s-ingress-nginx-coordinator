@@ -8,7 +8,7 @@ if [[ "${NODE_IPS}" == "" ]]; then
     exit 1
 fi
 
-DESTINATION_IP=$(kubectl $PATH_TO_KUBE_CONFIG get ep ingress-nginx -n ingress-nginx -o jsonpath="{ .subsets[].addresses[].ip }")
+DESTINATION_IP=$(kubectl --kubeconfig=$PATH_TO_KUBE_CONFIG get ep ingress-nginx -n ingress-nginx -o jsonpath="{ .subsets[].addresses[].ip }")
 if [[ "${DESTINATION_IP}" == "" ]]; then
     echo '<DESTINATION_IP> is required. ex: 10.244.1.2'
     exit 1
