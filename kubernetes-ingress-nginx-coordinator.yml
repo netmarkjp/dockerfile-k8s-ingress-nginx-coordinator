@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: ingress-nginx-coordinator
+  namespace: kube-system
+  labels:
+    app: ingress-nginx
+spec:
+  template:
+    metadata:
+      labels:
+        tier: node
+        app: ingress-nginx-coordinator
+    spec:
+      hostNetwork: true
+      tolerations:
+      - operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: ingress-nginx-coordinator
+        image: netmarkjp/kubernetes-ingress-nginx-coordinator
+        securityContext:
+          privileged: true
+        env:
+        - name: PATH_TO_KUBE_CONFIG
+          value: /mnt/kubeconfig/admin.yml
+        volumeMounts:
+        - name: kubeconfig
+          mountPath: "/mnt/kubeconfig"
+          readOnly: true
+      volumes:
+      - name: kubeconfig
+        secret:
+          secretName: kubeconfig
+          items:
+          - key: kubeconfig
+            path: admin.yml
