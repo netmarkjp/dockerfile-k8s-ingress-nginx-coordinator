@@ -14,8 +14,8 @@ if [[ "${DESTINATION_IP}" == "" ]]; then
     exit 1
 fi
 
-CHAIN_NAME="INGRESS-NGINX-COORDINATOR"
-CHAIN_NAME_SWP="INGRESS-NGINX-COORDINATOR-SWP"
+CHAIN_NAME="ING-NGX-COORDINATOR"
+CHAIN_NAME_SWP="ING-NGX-COORDINATOR-SWP"
 
 # initialise
 iptables -t nat -L ${CHAIN_NAME_SWP:?} >/dev/null 2>&1 && iptables -t nat -F ${CHAIN_NAME_SWP:?} || (iptables -t nat -N ${CHAIN_NAME_SWP:?} && iptables -t nat -I PREROUTING 1 -j ${CHAIN_NAME_SWP:?})
