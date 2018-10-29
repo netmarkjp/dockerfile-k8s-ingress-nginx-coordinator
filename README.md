@@ -24,7 +24,7 @@ After `[Service: ingress-nginx:80/443]` are the Kubernetes world.
 1. setup [ingress-nginx](https://github.com/kubernetes/ingress-nginx)
 1. create secret `kubeconfig`
     ```bash
-    kubectl create secret generic kubeconfig -n kube-system --from-file=kubeconfig=/etc/kubernetes/admin.yml
+    kubectl create secret generic kubeconfig -n kube-system --from-file=kubeconfig=/etc/kubernetes/admin.conf
     ```
 1. create DaemonSet
     ```bash

@@ -24,7 +24,7 @@ spec:
           privileged: true
         env:
         - name: PATH_TO_KUBE_CONFIG
-          value: /mnt/kubeconfig/admin.yml
+          value: /mnt/kubeconfig/admin.conf
         volumeMounts:
         - name: kubeconfig
           mountPath: "/mnt/kubeconfig"
@@ -35,4 +35,4 @@ spec:
           secretName: kubeconfig
           items:
           - key: kubeconfig
-            path: admin.yml
+            path: admin.conf

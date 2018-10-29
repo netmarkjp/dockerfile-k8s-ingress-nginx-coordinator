@@ -2,7 +2,7 @@
 
 set -e
 
-NODE_IPS=$(kubectl --kubeconfig=kubeconfig get nodes -l "node-role.kubernetes.io/master!=" -o jsonpath='{range .items[*]}{.status.addresses[].address},{end}' | sed 's/,$//')
+NODE_IPS=$(kubectl --kubeconfig=$PATH_TO_KUBE_CONFIG get nodes -l "node-role.kubernetes.io/master!=" -o jsonpath='{range .items[*]}{.status.addresses[].address},{end}' | sed 's/,$//')
 if [[ "${NODE_IPS}" == "" ]]; then
     echo '<NODE_IPS> is required. ex: 192.168.0.11,192.168.0.12'
     exit 1
