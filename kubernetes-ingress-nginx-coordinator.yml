@@ -18,7 +18,8 @@ spec:
         effect: NoSchedule
       containers:
       - name: ingress-nginx-coordinator
-        image: netmarkjp/kubernetes-ingress-nginx-coordinator
+        image: netmarkjp/k8s-ingress-nginx-coordinator:latest
+        imagePullPolicy: Always
         securityContext:
           privileged: true
         env:
